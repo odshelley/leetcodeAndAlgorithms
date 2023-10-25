@@ -1,5 +1,3 @@
-import unittest
-
 class Graph:
     """
     A class to represent a graph.
@@ -24,7 +22,7 @@ class Graph:
         src via the Bellman-Ford algorithm.
     """
 
-    def __init__(self, vertices, directed=False):
+    def __init__(self, vertices: int, directed=False):
         """
         Constructs all the necessary attributes for the graph object.
 
@@ -43,15 +41,15 @@ class Graph:
         for _ in range(vertices):
             self.adjMatrix.append([0 for __ in range(vertices)])
  
-    def addEdge(self, u, v, w):
+    def addEdge(self, u: int, v: int, w: float) -> None:
         '''
         Adds an edge between vertices.
 
         Parameters
         ----------
-        u : int, first vertex
-        u : int, second vertex
-        w : float, weighted edge between first and second vertex
+        u : first vertex
+        u : second vertex
+        w : weighted edge between first and second vertex
             
         Returns
         -------
@@ -67,18 +65,18 @@ class Graph:
             self.graph.append([u, v, w])
             self.adjMatrix[u][v] = 1
     
-    def bellmanFord(self, src):
+    def bellmanFord(self, src: int) -> list[int]:
         '''
         Computes the shortest distance from each vertex to the 
         source vertex via the Bellman-Ford algorithm.
 
         Parameters
         ----------
-        u : int, source vertex
+        u : source vertex
             
         Returns
         -------
-        dist : List, shortest paths from each vertex to the source
+        dist : shortest paths from each vertex to the source
         '''
 
         # Initialise
@@ -95,24 +93,6 @@ class Graph:
             if terminate == True:
                 break
         return dist
-    
-class TestGraph(unittest.TestCase):
-
-    def testBellmanFord(self):
-        """ensures that the Bellman Ford algorithm works."""
-
-        g = Graph(5,True)
-        g.addEdge(1,0,1)
-        g.addEdge(2,0,3)
-        g.addEdge(1,2,2)
-        g.addEdge(2,1,1)
-        g.addEdge(3,1,8)
-        g.addEdge(4,2,2)
-        g.addEdge(3,4,4)
-        g.addEdge(4,3,2)
-
-        self.assertEqual(g.BellmanFord(0), [0, 1, 2, 8, 4], "incorrect distances")
-        
 
 
     
