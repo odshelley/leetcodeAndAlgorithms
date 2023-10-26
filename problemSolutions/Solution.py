@@ -2,8 +2,7 @@ from abc import ABC, abstractmethod
 
 class Solution(ABC):
 
-    # Private 
-    __answer = None 
+    __answer = None # Private 
 
     def __init__(self,initialise=None):
         self.__answer = initialise
