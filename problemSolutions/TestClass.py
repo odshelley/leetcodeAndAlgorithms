@@ -1,9 +1,14 @@
 import unittest
 from Graph import Graph
+from TreeNode import TreeNode
 from Magician import Magician
 from Salary import Salary
 from BestTimeToBuyAndSellStock import BestTimeToBuyAndSellStock
-
+from BestTimeToBuyAndSellStockWithCooldown import BestTimeToBuyAndSellStockWithCooldown
+from NumberSolitaire import NumberSolitaire
+from ConstructBinaryTreeFromInorderAndPostorderTraversal import ConstructBinaryTreeFromInorderAndPostorderTraversal
+from PaintFence import PaintFence
+from WorldSeries import WorldSeries
 
 class TestClass(unittest.TestCase):
 
@@ -92,5 +97,49 @@ class TestClass(unittest.TestCase):
         s3.solution3(prices)
         self.assertEqual(s3.getSolution(), 6, "incorrect answer")
 
+    def testBestTimeToBuyAndSellStockWithCooldown(self):
+        """Ensures that the testBestTimeToBuyAndSellStockWithCooldown solutions are correct."""
+        # Test 1
+        s1 = BestTimeToBuyAndSellStockWithCooldown()
+        prices = [1,2,3,0,2]
+        s1.solution(prices)
+        self.assertEqual(s1.getSolution(), 3, "incorrect answer")
+
+    def testNumberSolitaire(self):
+        
+        """Ensures that the NumberSolitaire solution is correct."""
+        # Test 1
+        s1 = NumberSolitaire()
+        A = [1,-2,0,9,-1,-2]
+        s1.solution(A)
+        self.assertEqual(s1.getSolution(), 8, "incorrect answer")
+
+    def testConstructBinaryTreeFromInorderAndPostorderTraversal(self):
+         """Ensures that the ConstructBinaryTreeFromInorderAndPostorderTraversal solution is correct."""
+         s1 = ConstructBinaryTreeFromInorderAndPostorderTraversal()
+         A = [9,3,15,20,7]
+         B = [9,15,7,20,3]
+         s1.solution(A,B)
+         leaf1 = TreeNode(9)
+         leaf2 = TreeNode(20,TreeNode(15),TreeNode(7))
+         tree1 = TreeNode(3,leaf1,leaf2)
+         self.assertTrue( s1.getSolution().equal(tree1), "incorrect answer")
+    
+    def testPaintFence(self):
+
+        # Test1
+        s1 = PaintFence()
+        n, k = 1, 1 
+        s1.solution(n,k)
+        self.assertEqual( s1.getSolution(), 1, "incorrect answer" )
+
+        # Test1
+        s2 = PaintFence()
+        n, k = 7, 2
+        s2.solution(n,k)
+        self.assertEqual( s2.getSolution(), 42, "incorrect answer" )
+
+    def testWorldSeries(self):
+        return None
 if __name__ == '__main__':
     unittest.main()
