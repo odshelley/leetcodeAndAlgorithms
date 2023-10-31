@@ -9,6 +9,7 @@ from NumberSolitaire import NumberSolitaire
 from ConstructBinaryTreeFromInorderAndPostorderTraversal import ConstructBinaryTreeFromInorderAndPostorderTraversal
 from PaintFence import PaintFence
 from WorldSeries import WorldSeries
+from isSubsequence import isSubsequence
 
 class TestClass(unittest.TestCase):
 
@@ -141,5 +142,16 @@ class TestClass(unittest.TestCase):
 
     def testWorldSeries(self):
         return None
+
+    def testIsSubsequence(self):
+        
+        # Test1
+        s1 = isSubsequence()
+        s = 'abc'
+        t = 'ahbgdc'
+        s1.solution(s,t)
+        self.assertEqual( s1.getSolution(), True, "incorrect answer" )
+
+
 if __name__ == '__main__':
     unittest.main()
