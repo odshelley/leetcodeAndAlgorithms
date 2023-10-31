@@ -10,6 +10,7 @@ from ConstructBinaryTreeFromInorderAndPostorderTraversal import ConstructBinaryT
 from PaintFence import PaintFence
 from WorldSeries import WorldSeries
 from isSubsequence import isSubsequence
+from Triangle import Triangle
 
 class TestClass(unittest.TestCase):
 
@@ -151,6 +152,14 @@ class TestClass(unittest.TestCase):
         t = 'ahbgdc'
         s1.solution(s,t)
         self.assertEqual( s1.getSolution(), True, "incorrect answer" )
+
+    def testTriangle(self):
+        # Test1
+        s1 = Triangle()
+        triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
+        s1.solution(triangle)
+        self.assertEqual( s1.getSolution(), 11, "incorrect answer" )
+
 
 
 if __name__ == '__main__':
