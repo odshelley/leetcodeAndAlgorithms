@@ -11,6 +11,8 @@ from PaintFence import PaintFence
 from WorldSeries import WorldSeries
 from isSubsequence import isSubsequence
 from Triangle import Triangle
+from UnionFind import UnionFind
+
 
 class TestClass(unittest.TestCase):
 
@@ -159,6 +161,21 @@ class TestClass(unittest.TestCase):
         triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
         s1.solution(triangle)
         self.assertEqual( s1.getSolution(), 11, "incorrect answer" )
+
+    def testUnionFind(self):
+        # Test1
+        uf = UnionFind(10)
+        # 1-2-5-6-7 3-8-9 4
+        uf.union(1, 2)
+        uf.union(2, 5)
+        uf.union(5, 6)
+        uf.union(6, 7)
+        uf.union(3, 8)
+        uf.union(8, 9)
+        self.assertTrue(uf.connected(1, 5))
+        self.assertTrue(uf.connected(5, 7))
+        self.assertFalse(uf.connected(4, 9))
+        
 
 
 

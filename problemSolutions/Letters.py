@@ -43,3 +43,6 @@ class Letters(Solution):
             p1 += 1
 
         self.setSolution(total)
+
+
+    "aaaAACxyzXYZbbBB"
