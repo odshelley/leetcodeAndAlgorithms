@@ -12,6 +12,7 @@ from WorldSeries import WorldSeries
 from isSubsequence import isSubsequence
 from Triangle import Triangle
 from UnionFind import UnionFind
+from TheEarliestMomentWhenEveryoneBecomeFriends import TheEarliestMomentWhenEveryoneBecomeFriends
 
 
 class TestClass(unittest.TestCase):
@@ -175,8 +176,14 @@ class TestClass(unittest.TestCase):
         self.assertTrue(uf.connected(1, 5))
         self.assertTrue(uf.connected(5, 7))
         self.assertFalse(uf.connected(4, 9))
-        
 
+    def testTheEarliestMomentWhenEveryoneBecomeFriends(self):
+        # Test1
+        s1 = TheEarliestMomentWhenEveryoneBecomeFriends()
+        logs = [[20190101,0,1],[20190104,3,4],[20190107,2,3],[20190211,1,5],[20190224,2,4],[20190301,0,3],[20190312,1,2],[20190322,4,5]]
+        n = 6
+        s1.solution(logs,n)
+        self.assertEqual( s1.getSolution(), 20190301, "incorrect answer" )
 
 
 if __name__ == '__main__':
