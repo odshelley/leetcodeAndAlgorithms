@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 class Graph:
     """
     A class to represent a graph.
@@ -34,7 +36,7 @@ class Graph:
                 stating if the graph is undirected or not
         """
         self.V = vertices  # No. of vertices
-        self.graph = []
+        self.graph = defaultdict(list)
         self.d = directed # Checking if the graph is undirected or not
 
         self.adjMatrix = []
@@ -57,13 +59,56 @@ class Graph:
         '''
 
         if self.d == False:
-            self.graph.append([u, v, w])
-            self.graph.append([v, u, w])
+            self.graph[u].append([v, w])
+            self.graph[v].append([u, w])
             self.adjMatrix[u][v] = 1
             self.adjMatrix[v][u] = 1
         else:
-            self.graph.append([u, v, w])
+            self.graph[u].append([v, w])
             self.adjMatrix[u][v] = 1
+
+    def DFSUtil(self, v = int, visited = set) -> None:
+        '''
+        Function called recursively by DFS
+
+        Parameters
+        ----------
+        v       : vertex
+        visited : set of visited vertices
+            
+        Returns
+        -------
+        None
+        '''
+ 
+        # Mark the current node as visited
+        visited.add(v)
+ 
+        # Recur for all the adjacent vertices
+        for adjacentVertex, w in self.graph[v]:
+            if adjacentVertex not in visited:
+                self.DFSUtil(adjacentVertex, visited)
+
+    def DFS(self, v: int) -> set:
+        '''
+        Function to perform DFS starting from vertex v
+
+        Parameters
+        ----------
+        v       : vertex
+            
+        Returns
+        -------
+        set of vertices accessible via v
+        '''
+ 
+        # set for visited vertices
+        visited = set()
+ 
+        # Call the recursive helper function
+        self.DFSUtil(v, visited)
+
+        return visited
     
     def bellmanFord(self, src: int) -> list[int]:
         '''
@@ -86,14 +131,13 @@ class Graph:
         # Iterate
         for _ in range(self.V - 1):
             terminate = True
-            for u, v, w in self.graph:
-                if dist[v] != float("Inf") and dist[v] + w < dist[u]:
-                    terminate = False
-                    dist[u] = dist[v] + w
+            for vert in self.graph:
+                for adjacentVert, weightedEdge in self.graph[vert]:
+                    if dist[adjacentVert] != float("Inf")\
+                          and dist[adjacentVert] + weightedEdge < dist[vert]:
+                        terminate = False
+                        dist[vert] = dist[adjacentVert] + weightedEdge
             if terminate == True:
                 break
         return dist
-
-
-    
     

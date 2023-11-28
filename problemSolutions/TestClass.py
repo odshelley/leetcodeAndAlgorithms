@@ -19,18 +19,28 @@ class TestClass(unittest.TestCase):
 
     def testGraph(self):
         """Ensures that the Bellman Ford algorithm works."""
+        # Testing Bellman-ford
+        g1 = Graph(5,True)
+        g1.addEdge(1,0,1)
+        g1.addEdge(2,0,3)
+        g1.addEdge(1,2,2)
+        g1.addEdge(2,1,1)
+        g1.addEdge(3,1,8)
+        g1.addEdge(4,2,2)
+        g1.addEdge(3,4,4)
+        g1.addEdge(4,3,2)
 
-        g = Graph(5,True)
-        g.addEdge(1,0,1)
-        g.addEdge(2,0,3)
-        g.addEdge(1,2,2)
-        g.addEdge(2,1,1)
-        g.addEdge(3,1,8)
-        g.addEdge(4,2,2)
-        g.addEdge(3,4,4)
-        g.addEdge(4,3,2)
+        self.assertEqual(g1.bellmanFord(0), [0, 1, 2, 8, 4], "incorrect distances")
 
-        self.assertEqual(g.bellmanFord(0), [0, 1, 2, 8, 4], "incorrect distances")
+        # Testing DFS
+        g2 = Graph(5,False)
+        g2.addEdge(0,1,1)
+        g2.addEdge(0,2,1)
+        g2.addEdge(0,3,1)
+        g2.addEdge(2,3,1)
+        g2.addEdge(2,4,1)
+        
+        self.assertEqual(g2.DFS(2), set({0,1,2,3,4}), "incorrect set")
         
     def testMagician(self):
         """Ensures that the Magician solution is correct."""
