@@ -3,18 +3,19 @@ import functools
 
 class BestTimeToBuyAndSellStock(Solution):
     '''
-    This class is for solving the 'Best Time To Buy And Sell Stock' problems from Leetcode.
+    This class is for solving the 'Best Time To Buy And Sell Stock' problems 
+    from Leetcode.
 
     Best Time To Buy And Sell Stock IV:
 
-    You are given an integer array prices where prices[i] is the price of a given stock on the ith day, and an 
-    integer k.
+    You are given an integer array prices where prices[i] is the price of a 
+    given stock on the ith day, and an integer k.
 
-    Find the maximum profit you can achieve. You may complete at most k transactions: i.e. you may buy at most k 
-    times and sell at most k times.
+    Find the maximum profit you can achieve. You may complete at most k 
+    transactions: i.e. you may buy at most k times and sell at most k times.
 
-    Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you 
-    buy again).
+    Note: You may not engage in multiple transactions simultaneously (i.e., you 
+    must sell the stock before you buy again).
     '''
     def __init__(self):
         super().__init__()
@@ -29,12 +30,14 @@ class BestTimeToBuyAndSellStock(Solution):
         '''
         Best Time to Buy and Sell Stock III:
 
-        You are given an array prices where prices[i] is the price of a given stock on the ith day.
+        You are given an array prices where prices[i] is the price of a given 
+        stock on the ith day.
 
-        Find the maximum profit you can achieve. You may complete at most two transactions.
+        Find the maximum profit you can achieve. You may complete at most two 
+        transactions.
 
-        Note: You may not engage in multiple transactions simultaneously (i.e., you must sell the stock 
-        before you buy again).
+        Note: You may not engage in multiple transactions simultaneously (i.e., 
+        you must sell the stock before you buy again).
 
 
         Parameters
@@ -60,11 +63,12 @@ class BestTimeToBuyAndSellStock(Solution):
         updates answer to maximum profit you can achieve
         '''
         N = len(prices)
+
         @functools.lru_cache(None)
         def dp(day,transactionsLeft,holding):
             # Base case
             if transactionsLeft == 0 or day == N: 
-                return 0
+                return 0 
             
             do_nothing = dp(day+1,transactionsLeft,holding)
             do_something = 0 
